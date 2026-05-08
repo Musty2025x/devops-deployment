@@ -188,7 +188,7 @@
                             data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
                             <span></span>
                         </button>
-                        <h3 class="ms-5 mb-0">Your Techie Hub; Together, we can build a world where everyone has the chance to thrive.
+                        <h3 class="ms-5 mb-0">Your Techie Hub; Together, we can build a world where everyone has the chance to thrive..
                         </h3>
                     </div>
                 </div>
