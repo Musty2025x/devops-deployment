@@ -142,7 +142,7 @@ The Charitize PHP app should render correctly.
 
 ## screenshot of the app running locally on http://localhost:8080
 
-> ![alt text](asset/Screenshot-2026-05-08 081857.png)
+> ![alt text](asset/Screenshot-2026-05-08_081857.png)
 
 
 ---
