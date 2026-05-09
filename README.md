@@ -177,7 +177,7 @@ git init
 git add .
 git commit -m "Initial commit - PHP app + Terraform + CI/CD"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/devops-deployment.git
+git remote add origin https://github.com/musty2025x/devops-deployment.git
 git push -u origin main
 ```
 
@@ -497,7 +497,7 @@ If the app loads — VM, Docker, and app are all confirmed working. ✅
 Make a visible change to test auto-deployment:
 
 ```bash
-# Edit index.php — add Your Techie Hub branding
+# Edit index.php line 191 — add Musty Techie Hub branding
 # Then push:
 git add .
 git commit -m "Test CI/CD"
