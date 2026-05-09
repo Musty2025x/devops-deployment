@@ -133,9 +133,8 @@ docker run -d -p 8080:80 php-app
 
 ## screenshot of Docker build and run commands executed successfully in local terminal
 
-> ![alt text](asset/Screenshot 2026-05-08 081808.png)
-> ![alt text](asset/Screenshot 2026-05-08 081837.png)
-
+> ![alt text](asset/Screenshot-2026-05-08_081808.png)
+> ![alt text](asset/Screenshot-2026-05-08_081837.png)
 
 Open in browser: **http://localhost:8080**
 
@@ -143,7 +142,7 @@ The Charitize PHP app should render correctly.
 
 ## screenshot of the app running locally on http://localhost:8080
 
-> ![alt text](asset/Screenshot 2026-05-08 081857.png)
+> ![alt text](asset/Screenshot-2026-05-08 081857.png)
 
 
 ---
@@ -363,8 +362,8 @@ Note the `vm_public_ip` from the output — you will need it for GitHub Secrets 
 > **Note:** If `Standard_B1s` is unavailable in `West Europe`, change the location to `East US` in `main.tf`. Since all resources reference `azurerm_resource_group.rg.location`, only the resource group location needs to be updated.
 
 ## screenshot of Terraform apply output showing successful deployment and outputs
-> ![alt text](asset/Screenshot 2026-05-08_082115.png)
-> ![alt text](asset/Screenshot 2026-05-08_082536.png)
+> ![alt text](asset/Screenshot-2026-05-08_082115.png)
+> ![alt text](asset/Screenshot-2026-05-08_082536.png)
 ---
 
 ## Phase 4 — Set Up the VM
@@ -380,7 +379,7 @@ ssh azureuser@YOUR_PUBLIC_IP
 ```
 
 ## screenshot of successful SSH connection to Azure VM in terminal
-> ![alt text](asset/Screenshot 2026-05-08_082615.png)
+> ![alt text](asset/Screenshot-2026-05-08_082615.png)
 
 
 ### Step 10 — Install Docker on the VM
@@ -460,7 +459,7 @@ cat ~/.ssh/id_rsa
 Copy the **entire output** including `-----BEGIN OPENSSH PRIVATE KEY-----` and `-----END OPENSSH PRIVATE KEY-----` and paste it into the secret.
 
 ## screenshot of GitHub Secrets configuration
-> ![alt text](asset/Screenshot 2026-05-08_083147.png)
+> ![alt text](asset/Screenshot-2026-05-08_083147.png)
 ---
 
 ## Phase 6 — Manual Deployment Test (Verify VM is Ready)
@@ -484,12 +483,12 @@ If the app loads — VM, Docker, and app are all confirmed working. ✅
 
 ## screenshot of successful manual deployment
 
-> ![alt text](asset/Screenshot 2026-05-08_083247.png)
-> ![alt text](asset/Screenshot 2026-05-08_083440.png)
-> ![alt text](asset/Screenshot 2026-05-08_083724.png)
-> ![alt text](asset/Screenshot 2026-05-08_083738.png)
-> ![alt text](asset/Screenshot 2026-05-08_083903.png)
-> ![alt text](asset/Screenshot 2026-05-08_083940.png)
+> ![alt text](asset/Screenshot-2026-05-08_083247.png)
+> ![alt text](asset/Screenshot-2026-05-08_083440.png)
+> ![alt text](asset/Screenshot-2026-05-08_083724.png)
+> ![alt text](asset/Screenshot-2026-05-08_083738.png)
+> ![alt text](asset/Screenshot-2026-05-08_083903.png)
+> ![alt text](asset/Screenshot-2026-05-08_083940.png)
 
 ---
 
@@ -508,8 +507,8 @@ git push origin main
 Go to **GitHub → Actions** and watch the workflow run. Once complete, visit **http://YOUR_PUBLIC_IP:3000** — the change is live automatically.
 
 ## screenshot of successful GitHub Actions workflow run and updated app in browser
-> ![alt text](asset/Screenshot 2026-05-08_084256.png)
-> ![alt text](asset/Screenshot 2026-05-08_085332.png)
+> ![alt text](asset/Screenshot-2026-05-08_084256.png)
+> ![alt text](asset/Screenshot-2026-05-08_085332.png)
 
 ---
 
@@ -526,8 +525,8 @@ Wait 5–30 minutes for DNS propagation, then test:
 http://app.yourtechiehub.com.ng
 ```
 ## screenshot of DNS configuration and successful access via custom domain
-> ![alt text](asset/Screenshot 2026-05-08_085454.png)
-> ![alt text](asset/Screenshot 2026-05-08_085558.png)
+> ![alt text](asset/Screenshot-2026-05-08_085454.png)
+> ![alt text](asset/Screenshot-2026-05-08_085558.png)
 ---
 
 ## Phase 9 — Enable HTTPS
@@ -579,9 +578,9 @@ Follow the prompts. Certbot will issue the certificate and configure auto-renewa
 Visit: **https://app.yourtechiehub.com.ng** ✅
 
 ## screenshot of successful HTTPS access and Certbot output
-> ![alt text](asset/Screenshot 2026-05-08_085655.png)
-> ![alt text](asset/Screenshot 2026-05-08_090545.png)
-> ![alt text](asset/Screenshot 2026-05-08_092420.png)
+> ![alt text](asset/Screenshot-2026-05-08_085655.png)
+> ![alt text](asset/Screenshot-2026-05-08_090545.png)
+> ![alt text](asset/Screenshot-2026-05-08_092420.png)
 ---
 
 ## Output
@@ -792,7 +791,7 @@ az group list
 az group delete -n NetworkWatcherRG -y
 ```
 ## screenshot of successful Terraform destroy output
->![alt text](asset/Screenshot 2026-05-08_093201.png)
+>![alt text](asset/Screenshot-2026-05-08_093201.png)
 
 ---
 
