@@ -392,14 +392,6 @@ sudo systemctl start docker
 sudo usermod -aG docker azureuser
 ```
 
-### Step 11 — Install Nginx and Certbot
-
-```bash
-sudo apt install nginx certbot python3-certbot-nginx -y
-sudo systemctl enable nginx
-sudo systemctl start nginx
-```
-
 ---
 
 ## Phase 5 — Configure GitHub Actions CI/CD
@@ -522,7 +514,7 @@ At your domain registrar (Qservers, Namecheap, GoDaddy), add:
 
 Wait 5–30 minutes for DNS propagation, then test:
 ```
-http://app.yourtechiehub.com.ng
+http://app.mustydevops.com.ng
 ```
 ## screenshot of DNS configuration and successful access via custom domain
 > ![alt text](asset/Screenshot-2026-05-08_085454.png)
@@ -531,55 +523,27 @@ http://app.yourtechiehub.com.ng
 
 ## Phase 9 — Enable HTTPS
 
-### Step 14 — Configure Nginx as reverse proxy
+### Step 14 — Install Nginx and Certbot
 
 ```bash
-sudo python3 -c "
-content = '''server {
-    listen 80;
-    listen [::]:80;
-    server_name app.yourtechiehub.com.ng;
-    return 301 https://\$host\$request_uri;
-}
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    server_name app.yourtechiehub.com.ng;
-    ssl_certificate /etc/letsencrypt/live/app.yourtechiehub.com.ng/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/app.yourtechiehub.com.ng/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-    }
-}
-'''
-open('/etc/nginx/sites-available/default', 'w').write(content)
-print('File written successfully')
-"
-
-sudo nginx -t
-sudo systemctl restart nginx
+sudo apt install nginx certbot python3-certbot-nginx -y
+sudo systemctl enable nginx
+sudo systemctl start nginx
 ```
 
 ### Step 15 — Obtain SSL certificate
 
 ```bash
-sudo certbot --nginx -d app.yourtechiehub.com.ng
+sudo certbot --nginx -d app.mustydevops.com.ng
 ```
 
 Follow the prompts. Certbot will issue the certificate and configure auto-renewal.
 
-Visit: **https://app.yourtechiehub.com.ng** ✅
+Visit: **https://app.mustydevops.com.ng** ✅
 
 ## screenshot of successful HTTPS access and Certbot output
 > ![alt text](asset/Screenshot-2026-05-08_085655.png)
-> ![alt text](asset/Screenshot-2026-05-08_090545.png)
+> ![alt text](asset/image.png)
 > ![alt text](asset/Screenshot-2026-05-08_092420.png)
 ---
 
@@ -637,12 +601,12 @@ af94a124fab8   php-app   "docker-php-entrypoi…"   Up 2 minutes   0.0.0.0:3000-
 
 ```
 Successfully received certificate.
-Certificate is saved at: /etc/letsencrypt/live/app.yourtechiehub.com.ng/fullchain.pem
-Key is saved at:         /etc/letsencrypt/live/app.yourtechiehub.com.ng/privkey.pem
+Certificate is saved at: /etc/letsencrypt/live/app.mustydevops.com.ng/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/app.mustydevops.com.ng/privkey.pem
 This certificate expires on 2026-08-06.
 Certbot has set up a scheduled task to automatically renew this certificate.
 
-Congratulations! You have successfully enabled HTTPS on https://app.yourtechiehub.com.ng
+Congratulations! You have successfully enabled HTTPS on https://app.mustydevops.com.ng
 ```
 
 ### NSG Inbound Rules
@@ -728,7 +692,7 @@ script: |
 ```bash
 sudo docker stop php-app
 sudo systemctl start nginx
-sudo certbot --nginx -d app.yourtechiehub.com.ng
+sudo certbot --nginx -d app.mustydevops.com.ng
 # After cert issued, rerun Docker on port 3000:
 sudo docker run -d -p 3000:80 --restart always --name php-app php-app
 ```
