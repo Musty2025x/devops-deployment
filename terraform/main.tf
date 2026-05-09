@@ -110,6 +110,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_username      = "azureuser"
 
   network_interface_ids = [azurerm_network_interface.nic.id]
+  
+  
 
   admin_ssh_key {
     username   = "azureuser"
@@ -127,4 +129,18 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "22_04-lts"
     version   = "latest"
   }
+
+  user_data = base64encode(<<-EOF
+    #!/bin/bash
+    sudo apt update -y
+    sudo apt install docker.io -y
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    sudo usermod -aG docker azureuser
+    sudo git clone https://github.com/musty2025x/devops-deployment.git
+    cd devops-deployment/charitize
+    sudo docker build -t php-app .
+    sudo docker run -d -p 3000:80 --name php-app php-app
+  EOF
+  )
 }

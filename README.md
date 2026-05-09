@@ -463,7 +463,7 @@ Before relying on CI/CD, test manually to confirm the VM, Docker, and app are wo
 ssh azureuser@YOUR_PUBLIC_IP
 
 # Clone and deploy manually
-sudo git clone https://github.com/YOUR_USERNAME/devops-deployment.git
+sudo git clone https://github.com/musty2025x/devops-deployment.git
 cd devops-deployment/charitize
 sudo docker build -t php-app .
 sudo docker run -d -p 3000:80 --name php-app php-app
@@ -527,13 +527,37 @@ http://app.mustydevops.com.ng
 
 ```bash
 sudo apt install nginx certbot python3-certbot-nginx -y
-sudo systemctl enable nginx
-sudo systemctl start nginx
 ```
 
-### Step 15 — Obtain SSL certificate
+
+### Step 15 — Configure Nginx as reverse proxy
 
 ```bash
+sudo python3 << 'PYEOF'
+content = """server {
+    listen 80;
+    listen [::]:80;
+    server_name app.mustydevops.com.ng;
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+"""
+with open('/etc/nginx/sites-available/default', 'w') as f:
+    f.write(content)
+print('Done')
+PYEOF
+
+sudo nginx -t # Test Nginx config
+```
+
+### Step 16 — Obtain SSL certificate
+
+```bash
+sudo systemctl start nginx
 sudo certbot --nginx -d app.mustydevops.com.ng
 ```
 
